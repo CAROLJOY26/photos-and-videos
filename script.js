@@ -1,44 +1,64 @@
-const CLOUD_NAME = "drsegptqy";          // Your Cloudinary cloud name
-const UPLOAD_PRESET = "FOFO AND KOKO";   // Your unsigned upload preset
+const CLOUD_NAME = "drsegptqy";          
+const UPLOAD_PRESET = "FOFO AND KOKO";  
 
 const video = document.getElementById("video");
 const switchBtn = document.getElementById("switchCamera");
 const captureBtn = document.getElementById("capturePhoto");
 const recordBtn = document.getElementById("recordVideo");
 const gallery = document.getElementById("gallery");
+const cameraLabel = document.getElementById("cameraLabel");
 
 let currentStream = null;
-let usingFrontCamera = true;
 let mediaRecorder;
 let recordedChunks = [];
+let videoDevices = [];
+let currentDeviceIndex = 0;
 
-// Start camera with permission request
+// Get all video devices (front/back cameras)
+async function getVideoDevices() {
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  videoDevices = devices.filter(device => device.kind === "videoinput");
+}
+
+// Start camera using the selected device
 async function startCamera() {
   if(currentStream) {
     currentStream.getTracks().forEach(track => track.stop());
   }
 
-  const constraints = {
-    video: { facingMode: usingFrontCamera ? "user" : "environment" },
-    audio: true
-  };
+  await getVideoDevices();
+
+  if(videoDevices.length === 0){
+    alert("No camera found!");
+    return;
+  }
+
+  const deviceId = videoDevices[currentDeviceIndex].deviceId;
 
   try {
-    currentStream = await navigator.mediaDevices.getUserMedia(constraints);
+    currentStream = await navigator.mediaDevices.getUserMedia({
+      video: { deviceId: { exact: deviceId } },
+      audio: true
+    });
     video.srcObject = currentStream;
+    cameraLabel.textContent = currentDeviceIndex === 0 ? "Front Camera" : "Back Camera";
   } catch (err) {
     console.error("Camera error:", err);
-    alert("Camera or microphone access denied. Please allow permissions to use this page.");
+    alert("Camera access denied or not available.");
   }
 }
 
 // Switch camera
 switchBtn.addEventListener("click", () => {
-  usingFrontCamera = !usingFrontCamera;
-  startCamera();
+  if(videoDevices.length > 1){
+    currentDeviceIndex = (currentDeviceIndex + 1) % videoDevices.length;
+    startCamera();
+  } else {
+    alert("No second camera available.");
+  }
 });
 
-// Capture photo and upload immediately
+// Capture photo and upload
 captureBtn.addEventListener("click", () => {
   const canvas = document.createElement("canvas");
   canvas.width = video.videoWidth;
@@ -70,7 +90,7 @@ recordBtn.addEventListener("click", () => {
   }
 });
 
-// Upload photo/video to Cloudinary
+// Upload to Cloudinary
 function uploadToCloudinary(fileBlob, filename, type) {
   const formData = new FormData();
   formData.append("file", fileBlob, filename);
@@ -82,7 +102,6 @@ function uploadToCloudinary(fileBlob, filename, type) {
   })
   .then(res => res.json())
   .then(data => {
-    console.log("Uploaded URL:", data.secure_url);
     addToGallery(data.secure_url, type);
   })
   .catch(err => console.error(err));
@@ -108,5 +127,5 @@ function addToGallery(url, type){
   }
 }
 
-// Start camera on page load
+// Start camera when page loads
 startCamera();
