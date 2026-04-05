@@ -1,64 +1,33 @@
-body {
-  font-family: 'Cairo', sans-serif;
-  background: linear-gradient(to right, #fddde6, #ffe6f0);
-  text-align: center;
-  padding: 20px;
-  margin: 0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engagement Memories 💍</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Share Your Moments 💖</h1>
 
-h1, h2 {
-  color: #b76e79;
-  margin-bottom: 15px;
-}
+  <!-- Camera Video -->
+  <video id="video" autoplay playsinline></video>
 
-video {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 10px;
-  margin: 10px 0;
-}
+  <!-- Camera Controls -->
+  <div id="controls">
+    <button id="switchCamera">Switch Camera</button>
+    <button id="capturePhoto">Capture Photo</button>
+    <button id="recordVideo">Start Recording</button>
+  </div>
 
-button, input[type="file"] {
-  background-color: #b76e79;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  margin: 10px 0;
-  font-size: 16px;
-  display: inline-block;
-}
+  <!-- Gallery -->
+  <h2>Gallery</h2>
+  <div id="gallery">
+    <!-- Preloaded photos/videos by coder -->
+    <img src="images/myphoto1.jpg" alt="Engagement Photo">
+    <img src="images/myphoto2.jpg" alt="Couple Photo">
+    <video src="videos/moment1.mp4" controls></video>
+  </div>
 
-input[type="file"] {
-  display: block;
-  margin: 10px auto;
-}
-
-#gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-#gallery img, #gallery video {
-  margin: 10px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 250px;
-}
-
-/* Responsive tweaks for small screens */
-@media (max-width: 600px) {
-  button, input[type="file"] {
-    width: 90%;
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  #gallery img, #gallery video {
-    width: 100%;
-    max-width: 200px;
-  }
-}
+  <script src="script.js"></script>
+</body>
+</html>
