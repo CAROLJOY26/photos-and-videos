@@ -1,33 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Engagement Memories 💍</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <h1>Share Your Moments 💖</h1>
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(to right, #fddde6, #ffe6f0);
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+}
 
-  <!-- Camera Video -->
-  <video id="video" autoplay playsinline></video>
+h1, h2 {
+  color: #b76e79;
+  margin-bottom: 15px;
+}
 
-  <!-- Camera Controls -->
-  <div id="controls">
-    <button id="switchCamera">Switch Camera</button>
-    <button id="capturePhoto">Capture Photo</button>
-    <button id="recordVideo">Start Recording</button>
-  </div>
+video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
 
-  <!-- Gallery -->
-  <h2>Gallery</h2>
-  <div id="gallery">
-    <!-- Preloaded photos/videos by coder -->
-    <img src="images/myphoto1.jpg" alt="Engagement Photo">
-    <img src="images/myphoto2.jpg" alt="Couple Photo">
-    <video src="videos/moment1.mp4" controls></video>
-  </div>
+#controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+  gap: 10px;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+button {
+  background-color: #b76e79;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  flex: 1 1 120px; /* buttons flexible on small screens */
+  min-width: 120px;
+}
+
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#gallery img, #gallery video {
+  margin: 10px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 5px;
+  }
+
+  button {
+    flex: 1 1 90%; /* full-width on mobile */
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  #gallery img, #gallery video {
+    width: 100%;
+    max-width: 100%;
+    margin: 5px 0;
+  }
+}
