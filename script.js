@@ -1,6 +1,6 @@
 // Replace these with your Cloudinary info
 const CLOUD_NAME = "drsegptqy";          // from dashboard
-const UPLOAD_PRESET = "FOFO AND KOKO";    // unsigned preset
+const UPLOAD_PRESET = "FOFO AND KOKO";   // unsigned preset
 
 // Open camera
 const video = document.getElementById('video');
@@ -50,19 +50,23 @@ uploadBtn.addEventListener('click', () => {
   .catch(err => console.error(err));
 });
 
-// Add photo/video to gallery
+// Add photo/video to gallery (responsive for mobile)
 function addToGallery(url, type){
   const gallery = document.getElementById('gallery');
   if(type.startsWith('video')){
     const vid = document.createElement('video');
     vid.src = url;
     vid.controls = true;
-    vid.width = 250;
+    vid.style.width = "100%";
+    vid.style.maxWidth = "250px";
+    vid.style.borderRadius = "10px";
     gallery.appendChild(vid);
   } else {
     const img = document.createElement('img');
     img.src = url;
-    img.width = 150;
+    img.style.width = "100%";
+    img.style.maxWidth = "250px";
+    img.style.borderRadius = "10px";
     gallery.appendChild(img);
   }
 }
