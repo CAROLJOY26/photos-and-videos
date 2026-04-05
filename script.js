@@ -1,5 +1,5 @@
 // Replace these with your Cloudinary info
-const CLOUD_NAME = "drsegptqy";          // from dashboard
+const CLOUD_NAME = "drsegptqy";          // from Cloudinary dashboard
 const UPLOAD_PRESET = "FOFO AND KOKO";   // unsigned preset
 
 // Open camera
@@ -8,7 +8,7 @@ navigator.mediaDevices.getUserMedia({ video: true, audio: false })
   .then(stream => video.srcObject = stream)
   .catch(err => console.error("Camera error:", err));
 
-// Capture photo from video
+// Capture photo from camera
 const captureBtn = document.getElementById('capture');
 captureBtn.addEventListener('click', () => {
   const canvas = document.createElement('canvas');
@@ -20,7 +20,7 @@ captureBtn.addEventListener('click', () => {
   }, 'image/png');
 });
 
-// Helper to convert blob to FileList
+// Convert blob to FileList
 function createFileList(blob, filename) {
   const file = new File([blob], filename, { type: blob.type });
   const dataTransfer = new DataTransfer();
@@ -50,7 +50,7 @@ uploadBtn.addEventListener('click', () => {
   .catch(err => console.error(err));
 });
 
-// Add photo/video to gallery (responsive for mobile)
+// Add photo/video to gallery
 function addToGallery(url, type){
   const gallery = document.getElementById('gallery');
   if(type.startsWith('video')){
