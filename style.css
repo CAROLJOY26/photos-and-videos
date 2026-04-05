@@ -3,19 +3,62 @@ body {
   background: linear-gradient(to right, #fddde6, #ffe6f0);
   text-align: center;
   padding: 20px;
+  margin: 0;
 }
 
-button {
+h1, h2 {
+  color: #b76e79;
+  margin-bottom: 15px;
+}
+
+video {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+button, input[type="file"] {
   background-color: #b76e79;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
-  margin: 10px;
   border-radius: 10px;
   cursor: pointer;
+  margin: 10px 0;
+  font-size: 16px;
+  display: inline-block;
+}
+
+input[type="file"] {
+  display: block;
+  margin: 10px auto;
+}
+
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 #gallery img, #gallery video {
   margin: 10px;
   border-radius: 10px;
+  width: 80%;
+  max-width: 250px;
+}
+
+/* Responsive tweaks for small screens */
+@media (max-width: 600px) {
+  button, input[type="file"] {
+    width: 90%;
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #gallery img, #gallery video {
+    width: 100%;
+    max-width: 200px;
+  }
 }
