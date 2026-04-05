@@ -2,19 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Engagement Memories 💍</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Share Your Moments 💖</h1>
 
+  <!-- Camera Video -->
   <video id="video" autoplay playsinline></video>
+
+  <!-- Capture Photo Button -->
   <button id="capture">Capture Photo</button>
+
+  <!-- File Input for Existing Photos/Videos -->
   <input type="file" id="fileInput" accept="image/*,video/*">
+
+  <!-- Upload Button -->
   <button id="upload">Upload</button>
 
+  <!-- Gallery -->
   <h2>Gallery</h2>
-  <div id="gallery"></div>
+  <div id="gallery">
+    <!-- Preloaded photos/videos by coder -->
+    <img src="images/myphoto1.jpg" alt="Engagement Photo">
+    <img src="images/myphoto2.jpg" alt="Couple Photo">
+    <video src="videos/moment1.mp4" controls></video>
+  </div>
 
   <script src="script.js"></script>
 </body>
