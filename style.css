@@ -1,3 +1,4 @@
+/* General layout */
 body {
   font-family: 'Cairo', sans-serif;
   background: linear-gradient(to right, #fddde6, #ffe6f0);
@@ -11,19 +12,21 @@ h1, h2 {
   margin-bottom: 15px;
 }
 
+/* Video styling */
 video {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
   border-radius: 10px;
   margin: 10px 0;
 }
 
+/* Controls styling */
 #controls {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-bottom: 15px;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
 button {
@@ -34,10 +37,18 @@ button {
   border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
-  flex: 1 1 120px; /* buttons flexible on small screens */
+  flex: 1 1 120px;
   min-width: 120px;
 }
 
+/* Camera label */
+#cameraLabel {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* Gallery styling */
 #gallery {
   display: flex;
   flex-wrap: wrap;
@@ -53,13 +64,10 @@ button {
   height: auto;
 }
 
+/* Mobile adjustments */
 @media (max-width: 600px) {
-  body {
-    padding: 5px;
-  }
-
   button {
-    flex: 1 1 90%; /* full-width on mobile */
+    flex: 1 1 90%;
     font-size: 14px;
     padding: 12px;
   }
@@ -68,5 +76,9 @@ button {
     width: 100%;
     max-width: 100%;
     margin: 5px 0;
+  }
+
+  video {
+    max-width: 100%;
   }
 }
